@@ -29,7 +29,7 @@ class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
               page--;
             }
           } catch (e) {
-            emit(state.copyWith(status: Status.error));
+            log(e.toString());
           }
         }
       },
