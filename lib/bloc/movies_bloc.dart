@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:infinite_list/helpers/constant.dart';
-import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
@@ -15,23 +14,26 @@ class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
     int page = 0;
     List<Results> movieResults = [];
 
-    on<MoviesEvent>((event, emit) async {
-      if (event is GetMoviesListEvent) {
-        try {
-          page++;
-          List<Results> results = await fetchMovieList(page);
-          if (results.isNotEmpty) {
-            movieResults.addAll(results);
-            emit(state.copyWith(status: Status.loaded, results: movieResults));
-          } else {
+    on<MoviesEvent>(
+      (event, emit) async {
+        if (event is GetMoviesListEvent) {
+          try {
+            page++;
+            List<Results> results = await fetchMovieList(page);
+            if (results.isNotEmpty) {
+              movieResults.addAll(results);
+              emit(
+                  state.copyWith(status: Status.loaded, results: movieResults));
+            } else {
+              emit(state.copyWith(status: Status.error));
+              page--;
+            }
+          } catch (e) {
             emit(state.copyWith(status: Status.error));
-            page--;
           }
-        } catch (e) {
-          emit(state.copyWith(status: Status.error));
         }
-      }
-    }, transformer: droppable());
+      },
+    );
   }
 }
 

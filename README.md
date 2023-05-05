@@ -9,7 +9,6 @@
 - dio
 - equatable
 - flutter_bloc
-- bloc_concurrency
 
 ## Features
 - Using BloC state management.
