@@ -7,7 +7,6 @@
 
 ## Packages
 - dio
-- equatable
 - flutter_bloc
 
 ## Features

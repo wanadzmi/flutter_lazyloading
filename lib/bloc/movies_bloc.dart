@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:infinite_list/helpers/constant.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:equatable/equatable.dart';
 import '../models/movie_model.dart';
 
 part 'movies_event.dart';
