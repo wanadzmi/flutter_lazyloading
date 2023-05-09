@@ -20,6 +20,4 @@ class MoviesState {
       results: results ?? this.results,
     );
   }
-
-  List<Object> get props => [status, results];
 }
